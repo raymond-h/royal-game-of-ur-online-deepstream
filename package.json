@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "deepstream -c ./conf/config.yml"
+    "start": "deepstream start -c ./conf/config.yml"
   },
   "dependencies": {
     "deepstream.io": "^2.2.2"
