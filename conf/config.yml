@@ -94,7 +94,7 @@ maxMessageSize: 1048576
 
 #Authentication
 auth:
-  type: none
+  # type: none
 
 #   # reading users and passwords from a file
 #   type: file
@@ -108,15 +108,16 @@ auth:
 #     # the length of the resulting key
 #     keyLength: 32
 
-#   # getting permissions from a http webhook
-#   type: http
-#   options:
-#     # a post request will be send to this url on every incoming connection
-#     endpointUrl: https://someurl.com/validateLogin
-#     # any of these will be treated as access granted
-#     permittedStatusCodes: [ 200 ]
-#     # if the webhook didn't respond after this amount of milliseconds, the connection will be rejected
-#     requestTimeout: 2000
+  # getting permissions from a http webhook
+  type: http
+  options:
+    # a post request will be send to this url on every incoming connection
+    # endpointUrl: https://someurl.com/validateLogin
+    endpointUrl: ${DEEPSTREAM_AUTH_URL}
+    # any of these will be treated as access granted
+    permittedStatusCodes: [ 200 ]
+    # if the webhook didn't respond after this amount of milliseconds, the connection will be rejected
+    requestTimeout: 20000
 
 # Permissioning
 permission:
