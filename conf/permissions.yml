@@ -1,19 +1,41 @@
 presence:
   "*":
-    allow: true
+    allow: "user.data.type == 'internal-service'"
+
 record:
   "*":
-    create: true
-    write: true
+    create: "user.data.type == 'internal-service'"
+    write: "user.data.type == 'internal-service'"
     read: true
-    delete: true
-    listen: true
+    delete: "user.data.type == 'internal-service'"
+    listen: false
+
+  "user/$userId":
+    create: true
+    write: "$userId == user.id || user.data.type == 'internal-service'"
+
 event:
   "*":
-    publish: true
+    publish: "user.data.type == 'internal-service'"
+    subscribe: "user.data.type == 'internal-service'"
+    listen: "user.data.type == 'internal-service'"
+
+  "game/$gameId/players-turn/$userId":
+    subscribe: "$userId == user.id && _('game/'+$gameId).players.indexOf($userId) !== -1"
+
+  "game/$gameId/game-over":
     subscribe: true
-    listen: true
+
 rpc:
   "*":
-    provide: true
-    request: true
+    provide: "user.data.type == 'internal-service'"
+    request: false
+
+  "newGame":
+    request: "data.userId == user.id"
+
+  "acceptGame":
+    request: "data.userId == user.id"
+
+  "performAction":
+    request: "data.userId == user.id"
