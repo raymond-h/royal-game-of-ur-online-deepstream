@@ -3,6 +3,7 @@
     "start": "deepstream start --port $PORT -c ./conf/config.yml"
   },
   "dependencies": {
-    "deepstream.io": "^2.2.2"
+    "deepstream.io": "^2.2.2",
+    "deepstream.io-storage-mongodb": "^1.0.2"
   }
 }
