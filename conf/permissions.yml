@@ -21,7 +21,7 @@ event:
     listen: "user.data.type == 'internal-service'"
 
   "game/$gameId/players-turn/$userId":
-    subscribe: "$userId == user.id && _('game/'+$gameId).players.indexOf($userId) !== -1"
+    subscribe: "($userId == user.id && _('game/'+$gameId).players.indexOf($userId) !== -1) || user.data.type == 'internal-service'"
 
   "game/$gameId/game-over":
     subscribe: true
@@ -37,5 +37,8 @@ rpc:
   "acceptGame":
     request: "data.userId == user.id"
 
+  "playAgainstBot":
+    request: "_('game/'+data.gameId).players[0] == user.id"
+
   "performAction":
-    request: "data.userId == user.id"
+    request: "data.userId == user.id || user.data.type == 'internal-service'"
