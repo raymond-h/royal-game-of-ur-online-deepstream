@@ -27,56 +27,12 @@ sslKey: null
 sslCert: null
 sslCa: null
 
-# Logger Configuration
-# logger:
-#   # use either the default logger
-#   name: default
-#    options:
-#      colors: true
-#      # value of logLevel (line 4) will always overwrite this value
-#      logLevel: INFO
-
-#   # or the winston logger
-#   name: winston
-#   options:
-#     # specify a list of transports (console, file, time)
-#     -
-#       type: console
-#       options:
-#         # value of logLevel (line 4) will always overwrite this value
-#         level: info
-#         colorize: true
-#     -
-#       type: time
-#       options:
-#         filename: ../var/deepstream
-
-#   # or a custom logger
-#   path: ./my-custom-logger
-
 # Plugin Configuration
 plugins:
-  # message:
-  #   name: redis
-  #   options:
-  #     host: localhost
-  #     port: 6379
-  #
-  # cache:
-  #   name: memcached
-  #   options:
-  #     serverLocation: 'localhost:11211'
-  #
   storage:
     name: mongodb
     options:
       connectionString: ${MONGO_URL}
-
-  # fooPlugin:
-  #   name: foo
-  #   options:
-  #     x: y
-  #   path: ./foo-plugin.js
 
 # Storage options
 # a RegExp that matches recordNames. If it matches, the record's data won't be stored in the db
@@ -94,20 +50,6 @@ maxMessageSize: 1048576
 
 #Authentication
 auth:
-  # type: none
-
-#   # reading users and passwords from a file
-#   type: file
-#   options:
-#     # Path to the user file. Can be json, js or yml
-#     path: ./users.yml
-#     # the name of a HMAC digest algorithm
-#     hash: 'md5'
-#     # the number of times the algorithm should be applied
-#     iterations: 100
-#     # the length of the resulting key
-#     keyLength: 32
-
   # getting permissions from a http webhook
   type: http
   options:
