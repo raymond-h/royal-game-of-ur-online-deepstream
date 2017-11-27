@@ -1,4 +1,6 @@
 {
+  "name": "royal-game-of-ur-online-deepstream",
+  "description": "Deepstream + config for deploying on Dokku",
   "scripts": {
     "start": "deepstream start --port $PORT -c ./conf/config.yml"
   },
